@@ -15,11 +15,6 @@ namespace todos
         .Run();
     }
 
-    static void LogGrade(object sender, GradeAddedEventArgs e)
-    {
-      Console.WriteLine($"Grade added: {e.Grade}");
-    }
-
     public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>();

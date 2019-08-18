@@ -2,6 +2,7 @@ import React, { useRef, useReducer, useCallback } from 'react'
 import { Form, TextInput, Stack, Button } from 'txstate-react/lib/components'
 import { useEvent } from 'txstate-react/lib/hooks'
 import { todoAPI } from './TodoAPI'
+import dayjs from 'dayjs'
 
 const postReducer = (state, action) => {
   switch (action.type) {
@@ -34,7 +35,7 @@ export const AddTodoForm = props => {
     try {
       await todoAPI.post('/create', {
         text: form.text || '',
-        due: new Date('2019-08-31')
+        due: dayjs().startOf('day').add(Math.floor(Math.random() * 30), 'day')
       }, {
         headers: {
           'Content-Type': 'application/json'
