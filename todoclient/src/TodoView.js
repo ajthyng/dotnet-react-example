@@ -38,7 +38,7 @@ export const TodoView = props => {
 
   return (
     <Stack spacing={16}>
-      {data.map(item => <Todo text={item.text} due={item.dueDate} key={item.id} />)}
+      {data.reverse().map(item => <Todo text={item.text} due={item.dueDate} key={item.id} />)}
     </Stack>
   )
 }

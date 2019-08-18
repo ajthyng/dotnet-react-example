@@ -5,7 +5,7 @@ import { AddTodoForm } from './AddTodoForm'
 import { todoAPI } from './TodoAPI'
 import { TodoView } from './TodoView'
 
-const { Header, Content } = Layout
+const { Header, Footer, Content } = Layout
 
 const Page = styled(Layout)`
   background-color: white;
@@ -18,6 +18,10 @@ const TopHeader = styled(Header)`
   box-shadow: 0 2px 4px #303030;
 `
 
+const MaroonFooter = styled(Footer)`
+  background-color: #501214;
+`
+
 function App () {
   const getTodos = useCallback(async () => {
     const { data } = await todoAPI.get('/list')
@@ -25,7 +29,8 @@ function App () {
   }, [])
 
   return (
-    <Page>
+    <Page
+    >
       <TopHeader>
         <h1>Basic Todo Example</h1>
       </TopHeader>
@@ -45,6 +50,7 @@ function App () {
           </Stack.Item>
         </Stack>
       </Content>
+      <MaroonFooter />
     </Page>
   )
 }
