@@ -1,0 +1,34 @@
+version: "3"
+services:
+  todoapi:
+    container_name: todoapi
+    build:
+      context: ./todoapi
+      dockerfile: Dockerfile
+    ports:
+      - 8080:3000
+    links:
+      - mongodb
+    volumes:
+      - ./todoapi:/usr/src/app/
+  todoclient:
+    container_name: todoclient
+    build:
+      context: ./todoclient
+      dockerfile: Dockerfile
+    ports:
+      - 80:3000
+    links:
+      - todoapi
+    volumes:
+      - ./todoclient/src:/usr/src/app/src
+      - ./todoclient/public:/usr/src/app/public
+  mongodb:
+    container_name: mongo
+    image: mongo:latest
+    ports:
+      - 27017:27017
+    volumes:
+      - todoapi:/data/db
+volumes:
+  todoapi: {}
